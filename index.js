@@ -1,47 +1,58 @@
 
 
-function Funcionarios (nome, salario, notaEnem) {
-    let _salario = salario;
-
+function mamiferos (nome, idade) {
     this.nome = nome;
-    this.notaEnem = notaEnem; 
+    this.idade = idade; 
 
-    this.getSalario = function() {
-        return _salario;
+    this.FazerSom = function() {
+        console.log(`${this.nome} faz o som de: QUERO MAMA`);
     }
-
-    this.setSalario = function(valor) {
-        if (typeof valor === 'number') {
-            _salario = valor;
-        } else {
-            alert("FODEU")
-        }
-    }
-
-    this.retornaAumento = function() {
-        console.log(this._salario * (this.notaEnem * 0.015));
-    }
-}
-
-function Cargos (nome, notaEnem, cargo) {
-    let _cargo = cargo;
-
-    Funcionarios.call(this, nome, null ,notaEnem);
-
-    this.setCargo = function() {
-        if (this.notaEnem < 380) {
-            _cargo = "Faxineiro/a";
-        } else if (this.notaEnem >= 380 && this.notaEnem <= 600) {
-            _cargo = "Administrativo";
-        } else {
-            _cargo = "Gerente";
-        }
     
-        return `O cargo do ${this.nome} é de ${_cargo}`;
+
+    this.MostrarIdade = function () {
+        console.log(`Esse animal com nome: ${this.nome} tem ${this.idade} anos de idade`);
+    }
+
+}
+
+class Ornitorrinco extends mamiferos {
+    constructor(nome, idade, peso) {
+        super(nome, idade);
+        this.peso = peso;
+    }
+
+    FazerSom() {
+        console.log(`${this.nome} faz o som de: Krrr`);
+    }
+
+    MostrarPeso() {
+        console.log(`Esse Ornitorrinco de nome: ${this.nome} tem o peso de ${this.peso}kg`);
+    }
+}
+
+class Golfinho extends mamiferos {
+    constructor(nome, idade, drogado) {
+        super(nome, idade);
+        this.drogado = drogado;
+    }
+
+    FazerSom() {
+        console.log(`${this.nome} faz o som de: Assobio`);
+    }
+
+    TaDrogado() {
+        console.log(`A respostá pra pergunta se o golfinho está drogado é: ${this.drogado}`);
     }
 }
 
 
-const id00001 = new Funcionarios('Carlos alberto de souza pinto', 3200, 720);
+const Perry = new Ornitorrinco("Perry", 8, "6,57");
+const Willy = new Golfinho ("Willy", 17, true);
 
-console.log(id00001.setCargo());
+Perry.FazerSom();
+Perry.MostrarPeso();
+Perry.MostrarIdade();
+
+Willy.FazerSom();
+Willy.TaDrogado();
+Willy.MostrarIdade();
